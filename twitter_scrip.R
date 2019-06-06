@@ -1,3 +1,4 @@
+# twitteR scrip #
 rm(list = ls())
 if(!requireNamespace("base64enc")) install.packages("base64enc")
 if(!requireNamespace("RCurl")) install.packages("RCurl")
