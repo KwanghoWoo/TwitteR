@@ -1,4 +1,5 @@
 # Making wordcloud with R #
+
 rm(list = ls())
 if (!requireNamespace("base64enc"))
   install.packages("base64enc")
@@ -47,7 +48,7 @@ is.data.frame(tweets.wh.df)
 names(tweets.wh.df) #트윗 변수 정보 출력 
 head(tweets.wh.df,3) #트윗 데이터 첫 3개 출력 
 
-tweets.text<-tweets.korea.df$text #분석 대상 트윗 내용 
+tweets.text<-tweets.wh.df$text #분석 대상 트윗 내용 
 
 # 불필요한 문자를 필터링
 tweets.text <- gsub("\n", "", tweets.text)
@@ -55,7 +56,7 @@ tweets.text <- gsub("\r", "", tweets.text)
 tweets.text <- gsub("RT", "", tweets.text) 
 tweets.text <- gsub("H3", "", tweets.text) 
 tweets.text <- gsub("h3", "", tweets.text)
-tweets.text <-gsub("http","", tweets.text)
+tweets.text <- gsub("http","", tweets.text)
 
 # Apply extract Noun. : koNLP(Korean Natural Lanaguage Processing) 
 library(rJava)
@@ -63,14 +64,14 @@ library(KoNLP)
 library(plyr)
 useSejongDic() #사용할 사전 설정
 # 문장에서 단어(명사) 분리 - Map 이용 
-tweets.nouns<-Map(extractNoun, tweets.text) 
+tweets.nouns<- Map(extractNoun, tweets.text) 
 head(tweets.nouns,1) 
-tweets.word<-unlist(tweets.nouns, use.name=F) 
+tweets.word<- unlist(tweets.nouns, use.name=F) 
 head(tweets.word,5)
 #sapply 함수 이용 
-txt.nouns<-sapply(tweets.text,extractNoun,USE.NAMES = F) 
+txt.nouns<- sapply(tweets.text,extractNoun,USE.NAMES = F) 
 head(txt.nouns,1)
-txt.word<-unlist(txt.nouns)
+txt.word<- unlist(txt.nouns)
 head(txt.word,5)
 
 # 워드 클라우드 사용하지 않은 단어 제거
@@ -86,7 +87,7 @@ tweets.word<- Filter(function(x){nchar(x)>=2}, tweets.word)
 
 
 # 단어별 카운팅, 상위 10개 단어 선택 
-tweets.count<-table(tweets.word) 
+tweets.count<- table(tweets.word) 
 head(sort(tweets.count, decreasing=T), 10)
 
 library(RColorBrewer)
