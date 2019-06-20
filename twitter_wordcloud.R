@@ -63,11 +63,13 @@ library(rJava)
 library(KoNLP)
 library(plyr)
 useSejongDic() #사용할 사전 설정
+
 # 문장에서 단어(명사) 분리 - Map 이용 
 tweets.nouns<- Map(extractNoun, tweets.text) 
 head(tweets.nouns,1) 
 tweets.word<- unlist(tweets.nouns, use.name=F) 
 head(tweets.word,5)
+
 #sapply 함수 이용 
 txt.nouns<- sapply(tweets.text,extractNoun,USE.NAMES = F) 
 head(txt.nouns,1)
