@@ -29,7 +29,7 @@ download.file(url = "http://curl.haxx.se/ca/cacert.pem", destfile = "cacert.pem"
 setup_twitter_oauth(consumerKey, consumerSecert, accesstoken, accesstokensecret)
 
 n <- 2000
-keyword <- '은퇴'
+keyword <- '근로시간'
 keyword <- enc2utf8(keyword)
 
 rdmTweets <- searchTwitter(keyword, n)
@@ -89,7 +89,7 @@ m2 <- as.matrix(myTdm2)
 distMatrix <- dist(scale(m2))
 
 fit <- hclust(distMatrix, method = "single")
-
+par(family = "AppleGothic")
 plot(fit)
 
 rect.hclust(fit, k = 10)
