@@ -89,7 +89,7 @@ m2 <- as.matrix(myTdm2)
 distMatrix <- dist(scale(m2))
 
 fit <- hclust(distMatrix, method = "single")
-par(family = "AppleGothic")
+par(family = "AppleGothic") #plot에서 한글 깨질때 사용
 plot(fit)
 
 rect.hclust(fit, k = 10)
